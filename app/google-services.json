@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "806436125287",
+    "firebase_url": "https://fireapp-47f8f.firebaseio.com",
+    "project_id": "fireapp-47f8f",
+    "storage_bucket": "fireapp-47f8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806436125287:android:f7a53248e8c122fe",
+        "android_client_info": {
+          "package_name": "com.example.adityasi.fireapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806436125287-dtaq3ic459efseda53j3688et6p5gtfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq_tHtR7hLmBf3kWHecFGkJUKotrhSQ4w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
