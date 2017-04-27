@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:id="@+id/editText"
-        android:hint="abc@Xmail.com" />
+        />
 
     <TextView
         android:text="Enter your Password"
@@ -49,7 +49,7 @@
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/editText"
         android:id="@+id/editText2"
-        android:hint="abc123" />
+         />
 
     <Button
         android:text="Sign Up"

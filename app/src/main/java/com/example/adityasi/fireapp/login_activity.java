@@ -9,45 +9,32 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class login_activity extends AppCompatActivity implements View.OnClickListener{
 
-   // private FirebaseAnalytics mFirebaseAnalytics;
-   // private Firebase ref;
-    private Button btn;
-    private EditText mail;
-    private EditText pass;
-    private TextView user;
+    private Button btn2;
+    private EditText mail2;
+    private EditText pass2;
+    private TextView user2;
     //private ProgressBar progressBar;
     private ProgressDialog progressBar;
 
     //Firebase object for authentication
     private FirebaseAuth firebaseAuth;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_activity);
 
-       // mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-       // Firebase.setAndroidContext(this);
-        //ref=new Firebase("https://fireapp-47f8f.firebaseio.com/");
-
-/*        if(firebaseAuth.getCurrentUser()!=null){
+       /* if(firebaseAuth.getCurrentUser()!=null){
             //new profile activity
             finish();
             startActivity( new Intent( getApplicationContext(),profile_activity.class));
@@ -57,23 +44,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         firebaseAuth= FirebaseAuth.getInstance();
 
-        btn= (Button)findViewById(R.id.btn);
-        mail= (EditText)findViewById(R.id.editText);
-        pass= (EditText)findViewById(R.id.editText2);
-        user= (TextView)findViewById(R.id.textView3);
+        btn2= (Button)findViewById(R.id.btn2);
+        mail2= (EditText)findViewById(R.id.editText3);
+        pass2= (EditText)findViewById(R.id.editText4);
+        user2= (TextView)findViewById(R.id.textView5);
 
-
-       /* btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-             //   Firebase child= ref.child("Nmae");
-               // child.setValue("Aditya");
-            }
-        });*/
-
-        btn.setOnClickListener(this);
-        user.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        user2.setOnClickListener(this);
 
 
 
@@ -81,12 +58,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressBar.setMessage(" Registering User .....");
         progressBar.show();
+
+
     }
 
-    private void register(){
+    private void loggedin(){
 
-       String email= mail.getText().toString().trim();
-       String password= pass.getText().toString().trim();
+        String email= mail2.getText().toString().trim();
+        String password= pass2.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this," Enter a valid Email address",Toast.LENGTH_SHORT).show();
@@ -100,18 +79,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.dismiss();
 
                 if(task.isSuccessful())
                 {
+                    //new profile activity
                     finish();
                     startActivity( new Intent( getApplicationContext(),profile_activity.class));
-                   // Toast.makeText(MainActivity.this,"Registration Successfull",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(login_activity.this,"Registration Successfull",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(MainActivity.this,"Registration not Successfull",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(login_activity.this,"Login not Successfull",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -120,19 +101,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        if(view==btn)
+        if(view==btn2)
         {
-            register();
+            loggedin();
         }
 
-        else if(view==user)
+        else if(view==user2)
         {
             //login activity will be opened
-            startActivity( new Intent(this,login_activity.class));
+            finish();
+            startActivity( new Intent(this, MainActivity.class));
         }
-
     }
-
-
-
 }
